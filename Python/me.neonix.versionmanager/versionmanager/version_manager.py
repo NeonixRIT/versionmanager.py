@@ -10,7 +10,7 @@ class Result(Enum):
 
 
 class VersionManager:
-    __slots__ = ['__local', '__remote', '__status', '__author', '__projectName', '__separator', 'outdated_event', 'current_event', 'dev_event']
+    __slots__ = ['__local', '__remote', '__author', '__projectName', '__separator', 'outdated_event', 'current_event', 'dev_event']
 
 
     def __init__(self, author: str, projectName: str, version: str, separator='.'):
@@ -30,7 +30,7 @@ class VersionManager:
         if self.__remote is None:
             self.__remote = Remote(self.__author, self.__projectName, self.__separator)
         else:
-            self.__remote.update_version()
+            self.__remote.refresh()
 
         if self.__local.verison() == self.__remote.verison():
             self.current_event()
@@ -43,9 +43,7 @@ class VersionManager:
             return Result.DEV
 
 
-
-vm = VersionManager('Aquatic-Labs', 'Umbra-Mod-Menu', '2.0.5')
-vm.dev_event += lambda: print('Dev version')
-vm.outdated_event += lambda: print('Outdated version')
-vm.current_event += lambda: print('Current version')
-vm.check_status()
+    def latest_data(self):
+        if self.__remote is None:
+            self.__remote = Remote(self.__author, self.__projectName, self.__separator)
+        return self.__remote.get_data()

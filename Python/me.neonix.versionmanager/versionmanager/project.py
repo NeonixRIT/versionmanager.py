@@ -14,5 +14,9 @@ class Project:
         return f'Project[{self.__author}, {self.__name}, {self.__version}]'
 
 
+    def set_version(self, version):
+        self.__version = version
+
+
     def verison(self):
         return self.__version

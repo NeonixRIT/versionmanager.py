@@ -5,9 +5,9 @@ class Version:
     __slots__ = ['__version_list', '__version_str']
 
 
-    def __init__(self, version='0.0.0', separator='.', length=3):
+    def __init__(self, version='0.0.0', separator='.'):
         self.__version_str = version
-        self.__version_list = list(version.split(separator, length))
+        self.__version_list = list(version.split(separator))
 
 
     def __str__(self):

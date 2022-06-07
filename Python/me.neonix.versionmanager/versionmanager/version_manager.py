@@ -10,12 +10,16 @@ class Result(Enum):
 
 
 class VersionManager:
-    __slots__ = ['__local', '__remote', '__status', 'outdated_event', 'current_event', 'dev_event']
+    __slots__ = ['__local', '__remote', '__status', '__author', '__projectName', '__separator', 'outdated_event', 'current_event', 'dev_event']
 
 
-    def __init__(self, author: str, projectName: str, version: str, separator='.', length=3):
-        self.__local = Local(author, projectName, version, separator, length)
-        self.__remote = Remote(author, projectName, separator, length)
+    def __init__(self, author: str, projectName: str, version: str, separator='.'):
+        self.__author = author
+        self.__projectName = projectName
+        self.__separator = separator
+
+        self.__local = Local(author, projectName, version, separator)
+        self.__remote = None
 
         self.outdated_event = Event()
         self.current_event = Event()
@@ -23,6 +27,11 @@ class VersionManager:
 
 
     def check_status(self):
+        if self.__remote is None:
+            self.__remote = Remote(self.__author, self.__projectName, self.__separator)
+        else:
+            self.__remote.update_version()
+
         if self.__local.verison() == self.__remote.verison():
             self.current_event()
             return Result.CURRENT

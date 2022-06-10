@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     # the name must match the folder name 'verysimplemodule'
-    name="neonix.versionmanager",
+    name="versionmanager-neonix",
     version='1.0.0',
     author="Kamron Cole",
     author_email="kjc8084@rit.edu",

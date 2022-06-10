@@ -10,15 +10,18 @@ class Version:
         self.__version_list = list(version.split(separator))
 
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.__version_str
 
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f'Version[{self.__version_str}, {self.__version_list}]'
 
 
-    def __lt__(self, other):
+    def __lt__(self, other) -> bool:
+        '''
+        Compare each version category to tell if local version is less than, equal to, or greater than the latest GitHub release
+        '''
         for i in range(len(self.__version_list)):
             version_number = int(self.__version_list[i])
             latest_version_number = int(other.__version_list[i])
@@ -29,7 +32,7 @@ class Version:
         return False
 
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         if type(other) != Version:
             return False
 

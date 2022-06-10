@@ -4,9 +4,9 @@ A GitHub Project Version Manager that polls latest version data from GitHub repo
 author: Kamron Cole (kjc8084@rit.edu)
 '''
 from enum import Enum
-from event import Event
-from local import Local
-from remote import Remote
+from .event import Event
+from .local import Local
+from .remote import Remote
 
 class Status(Enum):
     OUTDATED = -1,

@@ -1,7 +1,7 @@
 import requests
 
-from project import Project
-from version import Version
+from .project import Project
+from .version import Version
 
 class Remote (Project):
     '''

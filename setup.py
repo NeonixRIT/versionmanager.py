@@ -5,8 +5,8 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     # the name must match the folder name 'verysimplemodule'
-    name="versionmanager-neonix",
-    version='1.0.0',
+    name="versionmanagerpy",
+    version='1.0.1',
     author="Kamron Cole",
     author_email="kjc8084@rit.edu",
     description='A GitHub Project Version Manager.',

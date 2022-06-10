@@ -1,5 +1,5 @@
-from project import Project
-from version import Version
+from .version import Version
+from .project import Project
 
 class Local(Project):
     '''

@@ -43,7 +43,7 @@ class VersionManager:
             return Result.DEV
 
 
-    def latest_data(self):
+    def get_data(self):
         if self.__remote is None:
             self.__remote = Remote(self.__author, self.__projectName, self.__separator)
         return self.__remote.get_data()

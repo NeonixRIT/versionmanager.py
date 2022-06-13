@@ -18,7 +18,7 @@ class VersionManager:
     '''
     The main class to compare a local project to the latest Github release and perform actions based on the result
     '''
-    __slots__ = ['__local', '__remote', '__author', '__projectName', '__separator', 'outdated_event', 'current_event', 'dev_event']
+    __slots__ = ['__local', '__remote', '__author', '__projectName', '__separator', 'on_outdated', 'on_current', 'on_dev']
 
 
     def __init__(self, author: str, projectName: str, version: str, separator='.'):
@@ -36,9 +36,9 @@ class VersionManager:
         self.__local = Local(author, projectName, version, separator)
         self.__remote = None
 
-        self.outdated_event = Event()
-        self.current_event = Event()
-        self.dev_event = Event()
+        self.on_outdated = Event()
+        self.on_current = Event()
+        self.on_dev = Event()
 
 
     def check_status(self) -> Status:
@@ -52,13 +52,13 @@ class VersionManager:
             self.__remote.refresh()
 
         if self.__local.verison() == self.__remote.verison():
-            self.current_event()
+            self.on_current()
             return Status.CURRENT
         elif self.__local.verison() < self.__remote.verison():
-            self.outdated_event()
+            self.on_outdated()
             return Status.OUTDATED
         else:
-            self.dev_event()
+            self.on_dev()
             return Status.DEV
 
 

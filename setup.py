@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setup(
     # the name must match the folder name 'verysimplemodule'
     name="versionmanagerpy",
-    version='1.0.1',
+    version='1.0.2',
     author="Kamron Cole",
     author_email="kjc8084@rit.edu",
     description='A GitHub Project Version Manager.',
